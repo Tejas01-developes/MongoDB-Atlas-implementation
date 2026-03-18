@@ -22,7 +22,10 @@ throw err
 
 export const getquery=async(data)=>{
     try{
- const result=await db.collection("bulkies").find().toArray();       
+ const result=await db.collection("bulkies").find().toArray();     
+ if(!result){
+   return null
+ }  
  return result;        
  }catch(err){
  throw err
@@ -31,7 +34,10 @@ export const getquery=async(data)=>{
 
  export const getinfoquery=async(data)=>{
    try{
-const result=await db.collection("bulkies").findOne({email:data.email},{projection:{password:1,_id:0}});       
+const result=await db.collection("bulkies").findOne({email:data.email},{projection:{password:1,_id:0}}); 
+if(!result){
+   return null
+}      
 return result      
 }catch(err){
 throw err
@@ -80,6 +86,9 @@ return result
       console.log(data.id)
       try{
          const requestdata=await db.collection("entries").findOne({_id: new ObjectId(data.id)},{projection:{name:0,email:0}});
+         if(!requestdata){
+            return null
+         }
          return requestdata
       }catch(err){
          throw err
@@ -91,6 +100,9 @@ return result
       
       try{
          const requestdata=await db.collection("entries").findOne({name:data.name},{projection:{_id:0,email:0}});
+         if(!requestdata){
+            return null
+         }
          return requestdata
       }catch(err){
          throw err
@@ -102,6 +114,9 @@ return result
       
       try{
          const requestdata=await db.collection("entries").findOne({email:data.email},{projection:{_id:0,name:0}});
+         if(!requestdata){
+            return null
+         }
          return requestdata
       }catch(err){
          throw err
