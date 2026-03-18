@@ -1,4 +1,3 @@
-// import mongoose from 'mongoose';
 import dotenv from "dotenv";
 import { MongoClient, ServerApiVersion } from 'mongodb';
 dotenv.config();
@@ -18,4 +17,6 @@ console.log("error",err)
 }
 
 export {db}
+
+
 
